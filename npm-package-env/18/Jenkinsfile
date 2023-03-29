@@ -1,0 +1,20 @@
+pipeline {
+    agent {
+        label 'iaccess-builder'
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh './build.sh'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean after build
+            cleanWs()
+        }
+    }
+}
