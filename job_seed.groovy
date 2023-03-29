@@ -10,7 +10,7 @@ def gitBranch = getBinding().getVariables()['GIT_BRANCH']
 
 builds.each {
     def jobName = it.name
-    def path = it.path
+    def jobRoot = it.path
 
     pipelineJob(jobName) {
         properties {
@@ -29,14 +29,14 @@ builds.each {
 
                         extensions {
                             pathRestriction {
-                                includedRegions("${path}/.*")
+                                includedRegions("${jobRoot}/.*")
                                 excludedRegions("")
                             }
 
                             sparseCheckoutPaths {
                                 sparseCheckoutPaths {
                                     sparseCheckoutPath {
-                                        path("/${path}")
+                                        path("/${jobRoot}")
                                     }
                                 }
 
