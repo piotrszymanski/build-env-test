@@ -44,7 +44,7 @@ builds.each {
                         }
                     }
                 }
-                scriptPath("Jenkinsfile")
+                scriptPath("${jobRoot}/Jenkinsfile")
             }
         }
 
