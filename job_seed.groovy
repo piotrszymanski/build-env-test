@@ -14,10 +14,10 @@ builds.each {
                 scm {
                     git {
                         remote {
-                            credentials(${env.GIT_CREDENTIALS})
-                            url(${env.GIT_URL})
+                            credentials(env.GIT_CREDENTIALS)
+                            url(env.GIT_URL)
                         }
-                        branch(${env.GIT_BRANCH})
+                        branch(env.GIT_BRANCH)
 
                         extensions {
                             pathRestriction {
