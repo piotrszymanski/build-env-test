@@ -1,6 +1,6 @@
 builds = [
-    [ name: "npm-package-env:19",   path: "npm-package-env/19" ],
-    [ name: "webclient-env:19",     path: "webclient-env/19" ],
+    [ name: "npm-package-env_19",   path: "npm-package-env/19" ],
+    [ name: "webclient-env_19",     path: "webclient-env/19" ],
 ]
 
 // Extract Git properties from the environment.
