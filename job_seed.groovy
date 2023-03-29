@@ -9,7 +9,10 @@ def gitUrl = getBinding().getVariables()['GIT_URL']
 def gitBranch = getBinding().getVariables()['GIT_BRANCH']
 
 builds.each {
-    pipelineJob(it.name) {
+    def jobName = it.name
+    def path = it.path
+
+    pipelineJob(jobName) {
         properties {
             disableConcurrentBuilds()
         }
@@ -26,14 +29,14 @@ builds.each {
 
                         extensions {
                             pathRestriction {
-                                includedRegions("${it.path}/.*")
+                                includedRegions("${path}/.*")
                                 excludedRegions("")
                             }
 
                             sparseCheckoutPaths {
                                 sparseCheckoutPaths {
                                     sparseCheckoutPath {
-                                        path("/${it.path}")
+                                        path("/${path}")
                                     }
                                 }
 
