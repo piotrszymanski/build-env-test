@@ -3,10 +3,6 @@ builds = [
     [ name: "webclient-env:19",     path: "webclient-env/19" ],
 ]
 
-// gitUrl
-// gitBranch
-// gitCredentials
-
 builds.each {
     pipelineJob(it.name) {
         properties {
@@ -18,20 +14,21 @@ builds.each {
                 scm {
                     git {
                         remote {
-                            credentials(gitCredentials)
-                            url(gitUrl)
+                            credentials(${env.GIT_CREDENTIALS})
+                            url(${env.GIT_URL})
                         }
-                        branch(gitBranch)
+                        branch(${env.GIT_BRANCH})
 
                         extensions {
                             pathRestriction {
                                 includedRegions("${it.path}/.*")
+                                excludedRegions("")
                             }
 
                             sparseCheckoutPaths {
                                 sparseCheckoutPaths {
                                     sparseCheckoutPath {
-                                        path(it.path)
+                                        path("/${it.path}")
                                     }
                                 }
 
