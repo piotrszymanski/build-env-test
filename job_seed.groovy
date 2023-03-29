@@ -3,6 +3,11 @@ builds = [
     [ name: "webclient-env:19",     path: "webclient-env/19" ],
 ]
 
+// Extract Git properties from the environment.
+def gitCredentials = getBinding().getVariables()['GIT_CREDENTIALS']
+def gitUrl = getBinding().getVariables()['GIT_URL']
+def gitBranch = getBinding().getVariables()['GIT_BRANCH']
+
 builds.each {
     pipelineJob(it.name) {
         properties {
@@ -14,10 +19,10 @@ builds.each {
                 scm {
                     git {
                         remote {
-                            credentials(env.GIT_CREDENTIALS)
-                            url(env.GIT_URL)
+                            credentials(gitCredentials)
+                            url(gitUrl)
                         }
-                        branch(env.GIT_BRANCH)
+                        branch(gitBranch)
 
                         extensions {
                             pathRestriction {
